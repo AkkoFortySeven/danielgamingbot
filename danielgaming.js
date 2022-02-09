@@ -10,17 +10,49 @@ const client = new Discord.Client({
     ]
 })
 
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}`)
+
+const fs = require('fs');
+
+client.commands = new Discord.Collection();
+client.events = new Discord.Collection();
+
+['command_handler', 'event_handler'].forEach(handler => {
+    require(`./handlers/${handler}`)(client, Discord);
 })
 
-client.on("messageCreate", (message) => {
-    if (message.content == "hi"){
-        message.reply("Fuck you Ed Sheeran")
-    }
-})
+// const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+// for (const file of commandFiles)
+// {
+//     const command = require(`./commands/${file}`);
 
-const welcomingChannelID = "200120357095604225"
+//     client.commands.set(command.name, command);
+// }
+
+
+// client.on("ready", () => {
+//     console.log(`Logged in as ${client.user.tag}`)
+// })
+
+// client.on("messageCreate", (message) => {
+//     if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+//     const args = message.content.slice(prefix.length).split(/ +/);
+//     const command = args.shift().toLowerCase();
+
+//     if (command === 'bing'){
+//         client.commands.get('bing').execute(message, args);
+//     } else if (command === 'magnumopus'){
+//         client.commands.get('magnumopus').execute(message, args);
+//     }
+// })
+
+// client.on("messageCreate", (message) => {
+//     if (message.content == "hi"){
+//         message.reply("Fuck you Ed Sheeran")
+//     }
+// })
+
+const welcomingChannelID = "673464884318437409"
 
 client.on("guildMemberAdd", (member) => {
     member.guild.channels.cache.get(welcomingChannelID).send(`<@${member.id}> Who the fuck are you`)

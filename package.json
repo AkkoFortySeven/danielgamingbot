@@ -9,7 +9,14 @@
   "author": "me",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "@discordjs/opus": "^0.7.0",
+    "@discordjs/voice": "^0.8.0",
+    "discord.js": "^12.1.0",
+    "dotenv": "^16.0.0",
+    "ffmpeg-static": "^4.4.1",
+    "fs": "^0.0.1-security",
+    "libsodium-wrappers": "^0.7.9",
+    "yt-search": "^2.10.3",
+    "ytdl-core": "^4.10.1"
   }
 }
