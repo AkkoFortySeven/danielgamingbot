@@ -58,4 +58,6 @@ client.on("guildMemberAdd", (member) => {
     member.guild.channels.cache.get(welcomingChannelID).send(`<@${member.id}> Who the fuck are you`)
 })
 
+
+
 client.login(process.env.TOKEN)

@@ -85,23 +85,16 @@ module.exports = {
         {
             voice_channel.leave();
             queue.delete(message.guild.id);
+            message.channel.send('Right then, bye');
         }
 
-        /*
+        
         if (cmd === 'skip')
         {
-            var keys = Array.from(queue.keys()).slice(0, 1);
-            keys.forEach(k => queue.delete(k));
-
-            keys.sort();
-
-            
-
-
-            //message.guild.id.songs.shift();
+            skip_song(message, server_queue);
             
         }
-        */
+        
 
         
     }
@@ -123,9 +116,14 @@ const video_player = async (guild, song) => {
             video_player(guild, song_queue.songs[0]);
         });
 
-        await song_queue.text_channel.send('thanks brother heres wonderwall')
+        await song_queue.text_channel.send(`thanks brother heres **${song.title}**`)
 }
 
-// const video_stopper = async (guild) => {
-//     guild.
-// }
+const skip_song = (message, server_queue) => {
+    if (!message.member.voice.channel) return message.channel.send('go into a channel fuckface');
+    if (!server_queue)
+    {
+        return message.channel.send(`There is no songs in the queue dumbass`);
+    }
+    server_queue.connection.dispatcher.end();
+}
