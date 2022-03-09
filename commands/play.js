@@ -24,6 +24,8 @@ module.exports = {
             if (!args.length) return message.channel.send('are you mental');
             let song = {};
 
+            
+
             if (ytdl.validateURL(args[0]))
             {
                 const song_info = await ytdl.getInfo(args[0]);
@@ -33,6 +35,23 @@ module.exports = {
                 const video_finder = async (query) => 
                 {
                     const videoResult = await ytSearch(query);
+
+                    /*
+                    message.channel.send('what one you want');
+
+                    const videos = videoResult.videos.slice( 0, 4 )
+                    var index = 0;
+                    videos.forEach( function ( v )
+                    {
+                        index++
+                        const name = String(v.title)
+                        message.channel.send(` ${index}: **${name}**`)
+                    })
+
+                    
+                    */
+                    
+                    
                     return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
                 }
 
