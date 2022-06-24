@@ -5,7 +5,8 @@ module.exports = {
     description: 'echo message content in specified channel',
     execute(client, messageCreate, cmd, args)
     {
-        const targetChannel = '940463032469958666'
-        messageCreate.targetChannel.send(message.conent);
+        var messageContent = messageCreate.content.slice(5);
+        messageCreate.channel.bulkDelete(1);
+        messageCreate.channel.send(messageContent);
     }
 }

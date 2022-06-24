@@ -46,11 +46,11 @@ client.events = new Discord.Collection();
 //     }
 // })
 
-// client.on("messageCreate", (message) => {
-//     if (message.content == "hi"){
-//         message.reply("Fuck you Ed Sheeran")
-//     }
-// })
+ client.on("messageCreate", messageCreate => {
+     if (messageCreate.content == "hi"){
+         messageCreate.reply("Fuck you Ed Sheeran")
+     }
+ })
 
 const welcomingChannelID = "673464884318437409"
 
