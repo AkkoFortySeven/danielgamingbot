@@ -6,7 +6,11 @@ const client = new Discord.Client({
     intents: [
         "GUILDS",
         "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
+        "GUILD_MEMBERS",
+        "DIRECT_MESSAGES"
+    ],
+    partials: [
+        'CHANNEL',
     ]
 })
 
@@ -15,6 +19,14 @@ const fs = require('fs');
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
+
+/*
+client.on("messageCreate", message => {
+    if (message.content == "hi"){
+        message.reply("Fuck you ed sheeran");
+    }
+})
+*/
 
 ['command_handler', 'event_handler'].forEach(handler => {
     require(`./handlers/${handler}`)(client, Discord);
@@ -46,11 +58,18 @@ client.events = new Discord.Collection();
 //     }
 // })
 
- client.on("messageCreate", messageCreate => {
+client.on("messageCreate", messageCreate => {
      if (messageCreate.content == "hi"){
          messageCreate.reply("Fuck you Ed Sheeran")
      }
  })
+
+ client.on('messageCreate', async message => {
+    if (messageCreate.channel.partial)
+    {
+        messageCreate.reply("I don't give a shit");
+    }
+ });
 
 const welcomingChannelID = "673464884318437409"
 
