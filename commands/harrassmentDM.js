@@ -12,10 +12,16 @@ module.exports = {
         var messageContent = args.slice(1).join(' ');
 
 
-
+        console.log("i farted");
         client.users.fetch(targetUserID, false).then((user) => {
-            user.send(`${messageContent}`);
+            user.send({
+                files: [{
+                    attachment: 'joey in the room.jpg',
+                    name: 'im_watching_you.jpg'
+                }]
+            });
         })
+        
         
         
 
